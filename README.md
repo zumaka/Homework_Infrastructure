@@ -78,3 +78,37 @@ Generate SSH key using command below:
 ```
 ssh-keygen -t rsa
 ```
+And show the key and connect to the server using ssh:
+![dffd](/11.png) 
+
+Before login we created a VM in Yandex.Cloud:
+![dffd](/4.png) 
+
+## •	[1] Download the latest human genome assembly (GRCh38) from the Ensemble FTP server (fasta, GFF3). Index the fasta using samtools (samtools faidx) and GFF3 using tabix.
+I used wget for downloading, one of the examples is below:
+![dffd](/5.png) 
+
+I have already installed tabix for this moment. I used the command 
+```
+sudo apt-get install -y tabix
+```
+Rename files:
+```
+mv Homo_sapiens.GRCh38.108.gff3.gz HS_file2.gff3.gz
+```
+and unzip:
+![dffd](/6.png) 
+
+Index the fasta file using samtools faidx:
+![dffd](/7.png) 
+
+And gff3 using tabix. We need to sort file and zip it. After this, we can work with file. 
+![dffd](/8.png) 
+
+Lets look at the result:
+![dffd](/9.png) 
+
+## •	[1] Select and download BED files for three ChIP-seq and one ATAC-seq experiment from the ENCODE (use one tissue/cell line). Sort, bgzip, and index them using tabix.
+I used files from my ML homework.
+Lets download all using wget, unzip, sort, zip again and index using tabix. Look at final files (yellow):
+![dffd](/10.png) 
