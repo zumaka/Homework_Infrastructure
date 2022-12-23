@@ -1,0 +1,48 @@
+FROM continuumio/miniconda3
+LABEL "hw"="1"
+LABEL "optimizatin"="true"
+LABEL version="1"
+
+SHELL ["/bin/bash", "-c"]
+RUN conda create -n bio 
+
+RUN echo "source activate bio" > ~/.bashrc
+ENV PATH /opt/conda/envs/env/bin:$PATH
+
+RUN apt-get update && apt-get install -y --no-install-recommends g++ wget tar make unzip openjdk-11-jre gcc ca-certificates apt-transport-https && rm -rf /var/lib/apt/lists/*
+
+RUN wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip
+RUN unzip fastqc_v0.11.9.zip
+RUN cd FastQC && chmod a+x fastqc
+ENV PATH /FastQC/:$PATH
+
+RUN ./FastQC/fastqc --help
+
+
+RUN wget https://github.com/alexdobin/STAR/releases/download/2.7.10b/STAR_2.7.10b.zip
+RUN unzip STAR_2.7.10b.zip
+RUN cd STAR_2.7.10b/Linux_x86_64_static && make STAR
+
+
+RUN wget https://github.com/samtools/samtools/releases/download/1.16.1/samtools-1.16.1.tar.bz2
+RUN tar -xf samtools-1.16.1.tar.bz2 
+RUN cd samtools-1.16.1  && chmod a+x configure
+CMD cd /samtools-1.16.1/configure && make && make install
+#RUN ./samtools-1.16.1/configure
+#RUN  make
+#RUN  make install
+
+
+RUN wget https://github.com/broadinstitute/picard/releases/download/2.27.5/picard.jar
+#RUN java -jar picard.jar
+
+RUN wget -q https://github.com/COMBINE-lab/salmon/releases/download/v1.9.0/salmon-1.9.0_linux_x86_64.tar.gz
+RUN tar zxf salmon-1.9.0_linux_x86_64.tar.gz
+RUN export PATH=$PATH:~/salmon-1.9.0_linux_x86_64/bin
+
+RUN wget https://github.com/arq5x/bedtools2/releases/download/v2.30.0/bedtools-2.30.0.tar.gz
+RUN tar zxf bedtools-2.30.0.tar.gz 
+CMD cd bedtools2 && make
+
+
+RUN pip install multiqc #
