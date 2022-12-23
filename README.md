@@ -213,4 +213,9 @@ docker build . -f optim_hw1.txt -t hw1_good/hw1:latest
 the optimal decision of package installation task [Link](/optim_hw1.txt)
 
 Added new versions of dockerfiles
+
+First - from Conda
+
+Second - from binary
+
 [First Link](/optim_hw2.txt) and [Second Link](/optim_hw3.txt)
