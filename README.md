@@ -200,13 +200,16 @@ After this, I have already rebuilt the container again, because previous version
 
 A link to second container with conda usage [Conda link](https://disk.yandex.ru/d/MfgBqS2qeC5u5A)
 
+# Extra-task (size)
+about 8 Gb for first type of container and 2.1 after optimization. 
+
+Used hadolint and removed as many reported warnings as possible.
+After this, I have 2 warnings. First warning is about tag for an image, but there was only latest tag. 
+A second warning was about versions one of libraries. 
+
 ```
 docker build . -f optim_hw1.txt -t hw1_good/hw1:latest
 ```
 the optimal decision of package installation task [Link](/optim_hw1.txt)
-
-
-
-
 
 
