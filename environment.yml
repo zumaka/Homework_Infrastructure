@@ -1,0 +1,4 @@
+name: bio
+channels:
+  - defaults
+prefix: /opt/conda/envs/bio
